@@ -4,7 +4,6 @@ import json
 import os
 
 DATA_FILE = "contacts.json"
-
 class ContactManagerApp:
 def __init__(self, root):
 self.root = root
