@@ -55,7 +55,6 @@ ttk.Button(frame, text="Удалить контакт", command=self.delete_cont
 frame.grid_rowconfigure(4, weight=1)
 frame.grid_columnconfigure(1, weight=1)
 
-# --- Валидация ---
 def is_valid_phone(self, phone):
 """Проверяет, что телефон содержит только цифры и имеет длину от 10 до 15."""
 return phone.isdigit() and 10 <= len(phone) <= 15
@@ -72,7 +71,6 @@ if contact.get("email") == email_to_check and i != self.selected_contact_index:
 return False
 return True
 
-# --- Логика приложения ---
 def add_contact(self):
 name = self.entry_name.get().strip()
 phone = self.entry_phone.get().strip()
@@ -127,7 +125,6 @@ if new_email and (not self.is_valid_email(new_email) or not self.is_email_unique
 messagebox.showerror("Ошибка", "E-mail некорректен или уже используется другим контактом.")
 return
 
-# Обновление данных контакта
 self.contacts[self.selected_contact_index]["name"] = new_name
 self.contacts[self.selected_contact_index]["phone"] = new_phone
 self.contacts[self.selected_contact_index]["email"] = new_email
@@ -140,7 +137,6 @@ for item in self.tree.get_children():
 self.tree.delete(item)
 
 for contact in self.contacts:
-# .get() используется для корректной обработки контактов без E-mail
 self.tree.insert("", "end", values=(contact["name"], contact["phone"], contact.get("email", "")))
 
 def on_contact_select(self, event):
@@ -158,7 +154,6 @@ self.entry_phone.delete(0, tk.END)
 self.entry_phone.insert(0, contact["phone"])
 
 self.entry_email.delete(0, tk.END)
-# Если у контакта нет поля 'email', вставится пустая строка
 self.entry_email.insert(0, contact.get("email", ""))
 
 def delete_contact(self):
@@ -167,7 +162,6 @@ messagebox.showwarning("Ошибка", "Выберите контакт для �
 return
 
 del self.contacts[self.selected_contact_index]
-# Сбрасываем индекс после удаления
 self.selected_contact_index = None
 
 self.update_tree()
