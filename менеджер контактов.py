@@ -98,7 +98,6 @@ self.contacts.append(contact)
 self.update_tree()
 self.save_contacts()
 
-# Очистка полей после успешного добавления
 self.entry_name.delete(0, tk.END)
 self.entry_phone.delete(0, tk.END)
 self.entry_email.delete(0, tk.END)
